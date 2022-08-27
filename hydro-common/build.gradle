@@ -31,7 +31,5 @@ tasks.named('test') {
 }
 
 tasks.jar {
-  manifest {
-    archiveFileName.set("hydro-common-microservice.jar")
-  }
+    archiveFileName.set("${project.name}.jar")
 }
