@@ -1,0 +1,2 @@
+rootProject.name = 'hydro-common-microservice'
+include('hydro-common')

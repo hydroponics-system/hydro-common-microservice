@@ -1,0 +1,31 @@
+buildscript {
+    ext {
+        google_guava_version = '31.1-jre'
+		json_web_token_version = '0.2'
+		google_bugs_version = '3.0.2'
+        springboot_version = '2.6.7'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id "org.springframework.boot" version "${springboot_version}"
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter"
+	implementation "io.jsonwebtoken:jjwt:${json_web_token_version}"
+	implementation "com.google.code.findbugs:jsr305:${google_bugs_version}"
+	implementation "com.google.guava:guava:${google_guava_version}"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
