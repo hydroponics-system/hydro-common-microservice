@@ -55,7 +55,8 @@ dependencies {
 }
 
 jar {
-    enabled = false
+   enabled = true
+   archiveClassifier = '' //use empty string
 }
 
 sourceSets.test.resources.srcDir "src/test/resources"
