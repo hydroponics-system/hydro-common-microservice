@@ -1,4 +1,5 @@
-# Hydroponics API
+# Hydroponics Common [![Build Status](https://jitpack.io/v/hydroponics-system/hydro-common-microservice.svg)](https://jitpack.io/#hydroponics-system/hydro-common-microservice)
+
 
 - @JosueVanDyke add description
   - Explain what hydroponics are
