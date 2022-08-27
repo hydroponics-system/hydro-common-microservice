@@ -7,10 +7,10 @@ package com.hydro.common.dictionary.enums;
  * @since September 6, 2021
  */
 public enum WebRole implements TextEnum {
-    USER(1, "USER"),
-    SYSTEM_USER(2, "SYSTEM_USER"),
-    DEVELOPER(3, "DEVELOPER"),
-    ADMIN(4, "ADMIN");
+    USER(1 , "USER"),
+    SYSTEM_USER(2 , "SYSTEM_USER"),
+    DEVELOPER(3 , "DEVELOPER"),
+    ADMIN(4 , "ADMIN");
 
     private int rank;
     private String textId;
