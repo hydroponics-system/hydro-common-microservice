@@ -29,3 +29,9 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.jar {
+  manifest {
+    archiveFileName.set("hydro-common-microservice.jar")
+  }
+}
