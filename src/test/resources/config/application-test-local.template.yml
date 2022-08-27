@@ -5,6 +5,12 @@ spring:
     url: jdbc:mysql://localhost:3307
 
 security:
-  allowed:
-    domains: "*"
   signing-key: "test-local-key"
+
+junit:
+  jupiter:
+    execution:
+      parallel:
+        enabled: true
+        mode:
+          default: concurrent
