@@ -20,7 +20,6 @@ import com.hydro.common.annotations.interfaces.HasAccess;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
-import com.hydro.test.factory.annotations.HydroTest;
 
 /**
  * Test class for the HasAccess Aspect.
@@ -28,7 +27,6 @@ import com.hydro.test.factory.annotations.HydroTest;
  * @author Sam Butler
  * @since August 23, 2022
  */
-@HydroTest
 @ExtendWith(MockitoExtension.class)
 public class HasAccessAspectTest {
     @Mock

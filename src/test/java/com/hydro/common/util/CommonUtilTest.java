@@ -9,15 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.hydro.test.factory.annotations.HydroTest;
-
 /**
  * Test class for the Commo Util.
  * 
  * @author Sam Butler
  * @since August 23, 2022
  */
-@HydroTest
 public class CommonUtilTest {
 
     @Test

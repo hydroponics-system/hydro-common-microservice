@@ -7,15 +7,12 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
-import com.hydro.test.factory.annotations.HydroTest;
-
 /**
  * Test class for the Date Time Mapper.
  * 
  * @author Sam Butler
  * @since August 23, 2022
  */
-@HydroTest
 public class DateTimeMapperTest {
     @Test
     public void testFormatDateGivenFormat() {
