@@ -1,19 +1,19 @@
 package com.hydro.common.exception.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.hydro.common.exception.BaseException;
+import com.hydro.common.exception.InsufficientPermissionsException;
+import com.hydro.common.exception.InvalidCredentialsException;
+import com.hydro.common.exception.JwtTokenException;
+import com.hydro.common.exception.NotFoundException;
 import com.hydro.common.exception.domain.ExceptionError;
-import com.hydro.common.exception.exceptions.BaseException;
-import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
-import com.hydro.common.exception.exceptions.InvalidCredentialsException;
-import com.hydro.common.exception.exceptions.JwtTokenException;
-import com.hydro.common.exception.exceptions.NotFoundException;
-import com.hydro.common.logger.HydroLogger;
 
 /**
  * Exception Helper class for returning response entitys of the errored objects.
@@ -23,9 +23,7 @@ import com.hydro.common.logger.HydroLogger;
  */
 @RestControllerAdvice
 public class HydroExceptionHandlerController extends ResponseEntityExceptionHandler {
-
-    @Autowired
-    private HydroLogger LOGGER;
+    private static final Logger LOGGER = LoggerFactory.getLogger(HydroExceptionHandlerController.class);
 
     @ExceptionHandler(InvalidCredentialsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

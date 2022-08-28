@@ -1,4 +1,4 @@
-package com.hydro.common.exception.exceptions;
+package com.hydro.common.exception;
 
 /**
  * Base Exception class. Will omit stack trace and only display exception.

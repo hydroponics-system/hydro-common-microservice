@@ -1,4 +1,4 @@
-package com.hydro.common.exception.exceptions;
+package com.hydro.common.exception;
 
 import com.hydro.common.dictionary.enums.WebRole;
 

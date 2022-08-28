@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hydro.common.annotations.interfaces.HasAccess;
-import com.hydro.common.exception.exceptions.InsufficientPermissionsException;
+import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.jwt.utility.JwtHolder;
 
 /**

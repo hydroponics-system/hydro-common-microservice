@@ -1,4 +1,4 @@
-package com.hydro.common.exception.exceptions;
+package com.hydro.common.exception;
 
 /**
  * Exception thrown when user has invalid credentials.
