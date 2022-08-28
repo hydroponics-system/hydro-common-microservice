@@ -17,6 +17,7 @@ plugins {
 }
 
 group = 'com.hydro.common'
+sourceSets.test.resources.srcDir "src/test/resources"
 
 repositories {
 	mavenCentral()
@@ -33,10 +34,8 @@ tasks.named('test') {
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter"
-	implementation "org.springframework.boot:spring-boot-starter-jdbc"
 
 	implementation "io.jsonwebtoken:jjwt:${json_web_token_version}"
-	implementation "com.opengamma:elsql:${elsql_version}"
 	implementation "com.google.guava:guava:${google_guava_version}"
 	implementation "org.aspectj:aspectjtools:${aspect_tools_version}"
 	implementation "io.swagger.core.v3:swagger-annotations:${swagger_version}"
@@ -45,9 +44,11 @@ dependencies {
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
-jar {
-   enabled = true
-   archiveClassifier = '' //use empty string
+bootJar {
+   enabled = false
 }
 
-sourceSets.test.resources.srcDir "src/test/resources"
+jar {
+   enabled = true
+   archiveClassifier = ''
+}

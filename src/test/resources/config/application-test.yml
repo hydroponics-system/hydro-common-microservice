@@ -1,4 +1,1 @@
 # Do not change any values in this file
-security:
-  allowed:
-    domains: "*"
