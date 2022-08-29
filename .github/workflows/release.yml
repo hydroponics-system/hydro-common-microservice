@@ -1,7 +1,7 @@
 name: Release Version
 on:
   workflow_run:
-    workflows: ["Build Production"]
+    workflows: ["Build Common Library"]
     types: [completed]
     branches: [master]
 
