@@ -20,10 +20,15 @@ public class PartNumber {
     private static final Pattern PART_NUMBER_PATTERN = Pattern
             .compile("(?<productnumber>[0-9]{6})(?<environment>[D|P|L])(?<system>[0-9]{6})");
 
-    private final String partNumber;
-    private final int productNumber;
-    private final Environment environment;
-    private final int systemId;
+    private String partNumber;
+    private int productNumber;
+    private Environment environment;
+    private int systemId;
+
+    /**
+     * Default constructor for deserializing objects correctly.
+     */
+    public PartNumber() {}
 
     /**
      * Initialize a Part Number Object with the encoded Part Number String
