@@ -1,9 +1,7 @@
 package com.hydro.common.annotations.aspects;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.lang.annotation.Annotation;
 
@@ -49,12 +47,12 @@ public class HasAccessAspectTest {
     @EnumSource(WebRole.class)
     public void testHasAccessAllAccess(WebRole role) throws Throwable {
         when(jwtHolder.getWebRole()).thenReturn(role);
-        accessAspcect.access(proceedingJoinPoint, getHasAccessAnnotationInstance(WebRole.USER));
+        accessAspcect.access(proceedingJoinPoint, getHasAccessAnnotationInstance(WebRole.SYSTEM));
         verify(proceedingJoinPoint).proceed();
     }
 
     @ParameterizedTest
-    @EnumSource(value = WebRole.class, names = { "ADMIN" }, mode = EnumSource.Mode.EXCLUDE)
+    @EnumSource(value = WebRole.class, names = {"ADMIN"}, mode = EnumSource.Mode.EXCLUDE)
     public void testHasAccessInsufficentPermissions(WebRole role) throws Throwable {
         when(jwtHolder.getWebRole()).thenReturn(role);
         assertThrows(InsufficientPermissionsException.class,
