@@ -1,11 +1,9 @@
 package com.hydro.common.jwt.utility;
 
-import static com.hydro.common.factory.data.UserFactoryData.userData;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static com.hydro.common.factory.data.HydroSystemFactoryData.*;
+import static com.hydro.common.factory.data.UserFactoryData.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
-import com.hydro.common.environment.AppEnvironmentService;
+import com.hydro.common.environment.AppEnvironmentService;;
 
 /**
  * Test Class for the JwtHolder.
@@ -97,6 +95,20 @@ public class JwtHolderTest {
     @Test
     public void testParseTokenERROR() {
         assertNull(jwtHolder.parse("INVALID"), "Returned data should be null");
+    }
+
+    @Test
+    public void testParseUserOnSystemTokenException() {
+        jwtHolder.setToken(tokenUtil.generateToken(hydroSystem()));
+
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> jwtHolder.getUser());
+        assertEquals("Jwt is not of type User!", e.getMessage(), "Exception Message");
+    }
+
+    @Test
+    public void testParseSystemOnUserTokenException() {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> jwtHolder.getSystem());
+        assertEquals("Jwt is not of type Hydro System!", e.getMessage(), "Exception Message");
     }
 
     private synchronized void multiThreadTest(User u) throws InterruptedException {

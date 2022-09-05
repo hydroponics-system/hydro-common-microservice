@@ -2,7 +2,10 @@ package com.hydro.common.jwt.utility;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
+import com.hydro.common.dictionary.data.HydroSystem;
+import com.hydro.common.dictionary.data.PartNumber;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.Environment;
 import com.hydro.common.dictionary.enums.WebRole;
@@ -139,11 +142,14 @@ public class JwtHolder {
 	}
 
 	/**
-	 * Will get a user object from the current user jwt.
+	 * Will get a user object from the current user jwt. It will only peform this
+	 * action if the jwt token is a user web authenticated token.
 	 * 
 	 * @return {@link User} object.
 	 */
 	public User getUser() {
+		Assert.isTrue(getJwtType().equals(JwtType.WEB), "Jwt is not of type User!");
+
 		User currentUser = new User();
 		currentUser.setId(getUserId());
 		currentUser.setEmail(getEmail());
@@ -151,5 +157,22 @@ public class JwtHolder {
 		currentUser.setFirstName(parse(HydroJwtClaims.FIRST_NAME).toString());
 		currentUser.setLastName(parse(HydroJwtClaims.LAST_NAME).toString());
 		return currentUser;
+	}
+
+	/**
+	 * Will get a Hydro System object from the current system jwt. It will only
+	 * peform this action if the jwt token is a system authenticated token.
+	 * 
+	 * @return {@link HydroSystem} object.
+	 */
+	public HydroSystem getSystem() {
+		Assert.isTrue(getJwtType().equals(JwtType.SYSTEM), "Jwt is not of type Hydro System!");
+
+		HydroSystem currentSystem = new HydroSystem();
+		currentSystem.setId(Integer.parseInt(parse(HydroJwtClaims.ID).toString()));
+		currentSystem.setUuid(parse(HydroJwtClaims.UUID).toString());
+		currentSystem.setPartNumber(new PartNumber(parse(HydroJwtClaims.PART_NUMBER).toString()));
+		currentSystem.setName(parse(HydroJwtClaims.NAME).toString());
+		return currentSystem;
 	}
 }
