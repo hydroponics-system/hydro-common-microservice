@@ -171,7 +171,7 @@ public class JwtHolder {
 		HydroSystem currentSystem = new HydroSystem();
 		currentSystem.setId(Integer.parseInt(parse(HydroJwtClaims.ID).toString()));
 		currentSystem.setUuid(parse(HydroJwtClaims.UUID).toString());
-		currentSystem.setPartNumber(new PartNumber(parse(HydroJwtClaims.PART_NUMBER).toString()));
+		currentSystem.setPartNumber((PartNumber) parse(HydroJwtClaims.PART_NUMBER));
 		currentSystem.setName(parse(HydroJwtClaims.NAME).toString());
 		return currentSystem;
 	}
