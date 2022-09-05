@@ -20,7 +20,6 @@ public class PartNumber {
     private static final Pattern PART_NUMBER_PATTERN = Pattern
             .compile("(?<productnumber>[0-9]{6})(?<environment>[D|P|L])(?<system>[0-9]{6})");
 
-    private String partNumber;
     private int productNumber;
     private Environment environment;
     private int systemId;
@@ -39,7 +38,6 @@ public class PartNumber {
         if(partNumber == null) {
             throw new IllegalArgumentException("Part Number must not be null. " + PART_NUMBER_FORMAT);
         }
-        this.partNumber = partNumber;
 
         var matcher = PART_NUMBER_PATTERN.matcher(partNumber);
         if(!matcher.matches()) {
@@ -64,9 +62,13 @@ public class PartNumber {
         return systemId;
     }
 
+    public String build() {
+        return String.format("%06d%s%06d", productNumber, environment.getTextId(), systemId);
+    }
+
     @Override
     public String toString() {
-        return partNumber;
+        return build();
     }
 
     @Override
@@ -74,12 +76,12 @@ public class PartNumber {
         if(other == null) {
             return false;
         }
-        return partNumber.equals(other.toString());
+        return build().equals(other.toString());
     }
 
     @Override
     public int hashCode() {
-        return partNumber.hashCode();
+        return build().hashCode();
     }
 
     private static int valueOf(Matcher matcher, String group) {

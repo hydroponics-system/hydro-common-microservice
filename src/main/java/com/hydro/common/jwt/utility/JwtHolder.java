@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.PartNumber;
 import com.hydro.common.dictionary.data.User;
@@ -74,6 +75,18 @@ public class JwtHolder {
 	 */
 	public Object parse(String key) {
 		return getClaims().get(key);
+	}
+
+	/**
+	 * Parse the claims from the given token and for the given key value pair. It
+	 * will then take the passed in class and cast it to that type.
+	 * 
+	 * @param key   The key to find.
+	 * @param clazz The class to cast the object as.
+	 * @return The class object of the found key.
+	 */
+	public <T> T parse(String key, Class<T> clazz) {
+		return new ObjectMapper().convertValue(getClaims().get(key), clazz);
 	}
 
 	/**
@@ -171,7 +184,7 @@ public class JwtHolder {
 		HydroSystem currentSystem = new HydroSystem();
 		currentSystem.setId(Integer.parseInt(parse(HydroJwtClaims.ID).toString()));
 		currentSystem.setUuid(parse(HydroJwtClaims.UUID).toString());
-		currentSystem.setPartNumber((PartNumber) parse(HydroJwtClaims.PART_NUMBER));
+		currentSystem.setPartNumber(parse(HydroJwtClaims.PART_NUMBER, PartNumber.class));
 		currentSystem.setName(parse(HydroJwtClaims.NAME).toString());
 		return currentSystem;
 	}

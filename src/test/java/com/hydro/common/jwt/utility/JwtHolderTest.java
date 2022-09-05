@@ -19,6 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.User;
 import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.environment.AppEnvironmentService;;
@@ -95,6 +96,14 @@ public class JwtHolderTest {
     @Test
     public void testParseTokenERROR() {
         assertNull(jwtHolder.parse("INVALID"), "Returned data should be null");
+    }
+
+    @Test
+    public void testParseSystem() {
+        jwtHolder.setToken(tokenUtil.generateToken(hydroSystem()));
+
+        HydroSystem sys = jwtHolder.getSystem();
+        assertNotNull(sys, "System should not be null");
     }
 
     @Test
