@@ -21,6 +21,7 @@ public abstract class HydroJwtClaims {
     public static final String UUID = "uuid";
     public static final String PART_NUMBER = "partNumber";
     public static final String NAME = "name";
+    public static final String OWNER_USER_ID = "ownerUserId";
 
     // All Claims
     public static final String JWT_TYPE = "jwtType";

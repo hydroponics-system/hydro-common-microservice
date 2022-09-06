@@ -128,6 +128,7 @@ public class JwtTokenUtil implements Serializable {
         claims.put(HydroJwtClaims.UUID, system.getUuid());
         claims.put(HydroJwtClaims.PART_NUMBER, system.getPartNumber());
         claims.put(HydroJwtClaims.NAME, system.getName());
+        claims.put(HydroJwtClaims.OWNER_USER_ID, system.getOwnerUserId());
         claims.put(HydroJwtClaims.ENVIRONMENT, appEnvironmentService.getEnvironment());
         claims.put(HydroJwtClaims.JWT_TYPE, JwtType.SYSTEM);
 
