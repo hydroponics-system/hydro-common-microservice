@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.hydro.common.exception.BaseException;
 import com.hydro.common.exception.InsufficientPermissionsException;
 import com.hydro.common.exception.InvalidCredentialsException;
+import com.hydro.common.exception.InvalidSystemCredentials;
 import com.hydro.common.exception.JwtTokenException;
 import com.hydro.common.exception.NotFoundException;
 import com.hydro.common.exception.domain.ExceptionError;
@@ -26,10 +27,17 @@ public class HydroExceptionHandlerController extends ResponseEntityExceptionHand
     private static final Logger LOGGER = LoggerFactory.getLogger(HydroExceptionHandlerController.class);
 
     @ExceptionHandler(InvalidCredentialsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ExceptionError handleInvalidCredentialsException(Exception ex) {
         LOGGER.error(ex.getMessage());
-        return new ExceptionError(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ExceptionError(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(InvalidSystemCredentials.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ExceptionError handleInvalidSystemCredentials(Exception ex) {
+        LOGGER.error(ex.getMessage());
+        return new ExceptionError(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(NotFoundException.class)
