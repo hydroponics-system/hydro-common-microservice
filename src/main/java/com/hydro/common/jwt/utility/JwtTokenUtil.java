@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.hydro.common.dictionary.data.HydroSystem;
 import com.hydro.common.dictionary.data.User;
+import com.hydro.common.dictionary.enums.WebRole;
 import com.hydro.common.environment.AppEnvironmentService;
 import com.hydro.common.jwt.domain.HydroJwtClaims;
 import com.hydro.common.jwt.domain.JwtType;
@@ -130,6 +131,7 @@ public class JwtTokenUtil implements Serializable {
         claims.put(HydroJwtClaims.NAME, system.getName());
         claims.put(HydroJwtClaims.OWNER_USER_ID, system.getOwnerUserId());
         claims.put(HydroJwtClaims.ENVIRONMENT, appEnvironmentService.getEnvironment());
+        claims.put(HydroJwtClaims.WEB_ROLE, WebRole.SYSTEM);
         claims.put(HydroJwtClaims.JWT_TYPE, JwtType.SYSTEM);
 
         return doGenerateToken(claims, JWT_TOKEN_SYSTEM_VALIDITY);
