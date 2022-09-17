@@ -47,7 +47,7 @@ public class HasAccessAspectTest {
     @EnumSource(WebRole.class)
     public void testHasAccessAllAccess(WebRole role) throws Throwable {
         when(jwtHolder.getWebRole()).thenReturn(role);
-        accessAspcect.access(proceedingJoinPoint, getHasAccessAnnotationInstance(WebRole.SYSTEM));
+        accessAspcect.access(proceedingJoinPoint, getHasAccessAnnotationInstance(WebRole.USER));
         verify(proceedingJoinPoint).proceed();
     }
 
